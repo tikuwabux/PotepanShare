@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  # Roomモデルのルーティン
+  get 'rooms/index'
+
+  # Homeモデルのルーティン
   get 'home/index'
   get 'home/show'
   root to: 'home#index'
+
+  # Userモデルのルーティン
 
   # devise_for :users までは､rails g devise:controllers users コマンド実行時に自動生成
   # devse_forメソッドで､ログイン認証機能関連のルーティンを設定している
