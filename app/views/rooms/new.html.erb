@@ -1,0 +1,57 @@
+<!--フラッシュメッセージがあれば表示する-->
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<!--form_withヘルパーメソッドで､入力フォームを作成-->
+<!--local: true でajax処理を無効にし､validatesエラーメッセを表示-->
+<%= form_with model: @room, local: true do |form| %>
+  <table>
+    <tr>
+      <th>ルーム情報登録</th>
+    </tr>
+
+    <!--ルーム名入力フォームを作成-->
+    <tr>
+      <!--保存先のカラムにname､見出しタイトル名に"ルーム名"を指定-->
+      <th><%= form.label :name, "ルーム名" %></th>
+      <!-- .text_field で､｢一行のテキスト投稿フォーム｣というフォーム型を指定-->
+      <td><%= form.text_field :name %></td>
+    </tr>
+
+    <!--ルーム紹介入力フォームを作成-->
+    <tr>
+      <th><%= form.label :introduction, "ルーム紹介" %></th>
+      <!--.text_area で｢複数行のテキスト投稿フォーム｣というフォーム型を指定 -->
+      <td><%= form.text_area :introduction %></td>
+    </tr>
+
+    <!--料金入力フォームを作成-->
+    <tr>
+      <th><%= form.label :price, "料金" %></th>
+      <!--.number_field で｢数値入力ボックス｣というフォーム型を指定-->
+      <td><%= form.number_field :price %></td>
+    </tr>
+
+    <!--住所入力フォームを作成-->
+    <tr>
+      <th><%= form.label :address, "住所" %></th>
+      <td><%= form.text_field :address %></td>
+    </tr>
+
+    <!--ルーム画像登録フォームを作成-->
+    <tr>
+      <!-- image は has_one_attached :image(/models/room.rb に記述)によって､カラム名のように扱える -->
+      <th><%= form.label :image, "ルーム画像" %></th>
+      <!--.file_field で｢ファイル選択ボックス｣というフォーム型を指定 -->
+      <td><%= form.file_field :image %></td>
+    </tr>
+
+    <!--入力データ送信ボタンを作成-->
+    <tr>
+      <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
+      <!--押下後は､RoomsControllerのcreateアクションへ飛ぶ-->
+      <th><%= form.submit "登録"%></th>
+    </tr>
+  </table>
+<% end %>
