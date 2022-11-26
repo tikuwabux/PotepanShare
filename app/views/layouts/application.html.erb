@@ -20,6 +20,9 @@
           Logged in as <strong><%= current_user.email %></strong>.
           <%= link_to 'プロフィール変更', edit_user_registration_path %>
           <%= link_to 'ログアウト', sign_out_path %>
+
+          <!--こうすれば､RoomモデルでUserモデルの情報を引き継げるかもと思って追加してみた-->
+          <%= link_to 'ルーム登録', new_room_path %>
         <% else %>
           <%= link_to 'サインイン', new_user_registration_path %>
           <%= link_to 'ログイン', new_user_session_path %>

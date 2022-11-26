@@ -17,6 +17,7 @@ module PotepanShare
     # the framework and any gems in your application.
 
     #メッセージを日本語化するために追加
+    #アプリケーションのデフォルトのロケールを日本語に設定
     config.i18n.default_locale = :ja
   end
 end

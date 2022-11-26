@@ -59,6 +59,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #ログイン機能実装のため追加
 gem 'devise'
 
-#deviseのメッセージを日本語化するために以下の2つ追加
+#deviseのメッセージを日本語化するために､以下の2つ追加｡
+#deviseメッセージの日本語翻訳ファイルが詰まっている
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+# デバッグを実行するため追加
+gem 'pry-rails'
+
+#rails_validation_errorを含めた､様々なrails系メッセージを日本語化するために追加
+#様々なrails系メッセージの日本語翻訳ファイルが詰まっている
+gem 'rails-i18n'
