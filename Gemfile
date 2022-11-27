@@ -70,3 +70,7 @@ gem 'pry-rails'
 #rails_validation_errorを含めた､様々なrails系メッセージを日本語化するために追加
 #様々なrails系メッセージの日本語翻訳ファイルが詰まっている
 gem 'rails-i18n'
+
+# ImageMagick(画像変換ツール)をrailsで使えるようにするために追加
+gem 'mini_magick'
+

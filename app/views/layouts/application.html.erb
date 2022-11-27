@@ -23,6 +23,7 @@
 
           <!--こうすれば､RoomモデルでUserモデルの情報を引き継げるかもと思って追加してみた-->
           <%= link_to 'ルーム登録', new_room_path %>
+          <%= link_to "#{current_user.name}の登録済みルーム一覧", rooms_path %>
         <% else %>
           <%= link_to 'サインイン', new_user_registration_path %>
           <%= link_to 'ログイン', new_user_session_path %>

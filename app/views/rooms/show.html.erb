@@ -1,2 +1,18 @@
-<h1>/Users/saitoshinichi/Desktop/potepan-camp-rails/PotepanShare/app/views/rooms/show.html.erb</h1>
-<%= @room.name %>
+<div class="room_show">
+  <div class="room_show_img">
+    <!--image_tag はrailsで画像を表示するためのimgタグを作成するヘルパーメソッド-->
+    <!--@room.image(ファイル名) で 登録したルーム画像表示-->
+    <!--.variant(resize:'200x200(縦✕横サイズ)') で画像サイズを200x200に指定｡variantメソッドは､gem 'mini_magick'のインストールで使用可能になった-->
+    <%= image_tag @room.image.variant(resize:'200x200') %>
+  </div>
+  <div class="room_show_detail">
+    <div class="registered_user_icon">
+    <!--Userモデルで､ユーザー画像登録機能を追加した後に追記する-->
+    </div>
+    <div class="room_show_detail_profile">
+      <p class="room_show_detail_profile_name"><%= @room.name %></p>
+      <p class="room_show_detail_profile_address"><%= @room.address %></p>
+    </div>
+    <p class="room_show_detail_introduction"><%= @room.introduction %></p>
+  </div>
+</div>

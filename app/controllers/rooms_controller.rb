@@ -1,6 +1,4 @@
 class RoomsController < ApplicationController
-  def index
-  end
 
   def new
     @room = Room.new
@@ -29,6 +27,13 @@ class RoomsController < ApplicationController
   def show
     # Room.find(params[:id]) で､idがparams[:id]であるroomレコードを取得
     @room = Room.find(params[:id])
+  end
+
+  def index
+    # Room.where(user_id: current_user.id) で､
+    # user_id値が､現在ログインしているユーザーのid値であるRoomレコードを取得(複数可)
+    @rooms = Room.where(user_id: current_user.id)
+
   end
 
   private
