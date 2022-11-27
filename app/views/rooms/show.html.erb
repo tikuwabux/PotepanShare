@@ -3,7 +3,8 @@
     <!--image_tag はrailsで画像を表示するためのimgタグを作成するヘルパーメソッド-->
     <!--@room.image(ファイル名) で 登録したルーム画像表示-->
     <!--.variant(resize:'200x200(縦✕横サイズ)') で画像サイズを200x200に指定｡variantメソッドは､gem 'mini_magick'のインストールで使用可能になった-->
-    <%= image_tag @room.image.variant(resize:'200x200') %>
+    <!-- if @room.image.attached? で､画像が添付されてないときのModule::DelegationError発生を防ぐ-->
+    <%= image_tag @room.image.variant(resize:'200x200') if @room.image.attached?%>
   </div>
   <div class="room_show_detail">
     <div class="registered_user_icon">
