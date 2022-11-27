@@ -34,6 +34,7 @@ class RoomsController < ApplicationController
     # user_id値が､現在ログインしているユーザーのid値であるRoomレコードを取得(複数可)
     @rooms = Room.where(user_id: current_user.id)
 
+    #rooms = current_user.rooms という関連を使った記述でも可
   end
 
   private
