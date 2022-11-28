@@ -4,9 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # roomモデルと関連付ける(userモデル:roomモデル == 1:多).FKはデフォルトのuser_id
-  has_many :rooms
-
-  # Reservationモデルと関連付ける(Reservationモデル:Userモデル == 1:多 )｡FKはデフォルトのuser_id
+  # Userモデル : Reservationモデル == 1 : 多｡FKはデフォルトのuser_id
   has_many :reservations
+  # Reservationモデルを介したUserモデル : Reservationモデルを介したRoomモデル == 多 : 多
+  has_many :rooms, through: :reservations
 end
