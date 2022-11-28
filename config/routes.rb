@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  #get 'reservations/create'
+  #get 'reservations/show'
+  #get 'reservations/index'
+  #Reservationモデルのルーティン
+  resources :reservations
+
   # Roomモデルのルーティン
   resources :rooms
 

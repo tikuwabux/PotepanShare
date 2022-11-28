@@ -27,6 +27,9 @@ class RoomsController < ApplicationController
   def show
     # Room.find(params[:id]) で､idがparams[:id]であるroomレコードを取得
     @room = Room.find(params[:id])
+
+    # ルーム詳細ページに､ルーム予約フォームを入れたいので､そのフォームの作成に使う変数を設定
+    @reservation = Reservation.new
   end
 
   def index
