@@ -39,15 +39,17 @@
     <!--.number_field で｢数値入力ボックス｣というフォーム型を指定-->
     <%= form.number_field :number_of_people %>
 
+    <!--user_idカラムに値を渡すため､非表示フォームを作成-->
+    <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
     <!--現在ログインしているユーザーのid値をパラメーターのvalue値として渡す-->
     <%= form.hidden_field :user_id, value: current_user.id %>
 
-    <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
-    <!--今詳細ページを開いているルームのid値をパラメーターのvalue値として渡す-->
+    <!--room_idカラムに値を渡すため､非表示フォームを作成-->
+    <!--今開いている詳細ページのルームのid値をパラメーターのvalue値として渡す-->
     <%= form.hidden_field :room_id, value: @room.id %>
 
     <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
-    <!--押下後は､ReservationsControllerのcreateへクションへ飛ぶ-->
+    <!--押下後は､ReservationsControllerのcreateアクションへ飛ぶ-->
     <%= form.submit "予約する"%>
 
   </div>
