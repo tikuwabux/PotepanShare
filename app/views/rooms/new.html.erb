@@ -16,6 +16,7 @@
       <!--保存先のカラムにname､見出しタイトル名に"ルーム名"を指定-->
       <th><%= form.label :name, "ルーム名" %></th>
       <!-- .text_field で､｢一行のテキスト投稿フォーム｣というフォーム型を指定-->
+      <!--入力値をパラメーターのvalue値として渡す-->
       <td><%= form.text_field :name %></td>
     </tr>
 
@@ -38,13 +39,21 @@
       <th><%= form.label :address, "住所" %></th>
       <td><%= form.text_field :address %></td>
     </tr>
-    
+
     <!--ルーム画像登録フォームを作成-->
     <tr>
       <!-- image は has_one_attached :image(/models/room.rb に記述)によって､カラム名のように扱える -->
       <th><%= form.label :image, "ルーム画像" %></th>
       <!--.file_field で｢ファイル選択ボックス｣というフォーム型を指定 -->
       <td><%= form.file_field :image %></td>
+    </tr>
+
+    <!--user_idカラムに値を渡すため､非表示フォームを作成-->
+    <tr>
+      <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
+      <!--current_user(gem'device'を導入したモデル名｡今回はuser) → deviseのヘルパーメソッド｡現在ログインしているユーザーのレコードを取得｡-->
+      <!--現在ログイン中のユーザーのid値をパラメーターのvalue値として渡す-->
+      <td><%= form.hidden_field :user_id, value: current_user.id %></td>
     </tr>
 
     <!--入力データ送信ボタンを作成-->
