@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
     # Room.find(params[:id]) で､idがparams[:id]であるroomレコードを取得
     @room = Room.find(params[:id])
 
-    # ルーム詳細ページに､ルーム予約フォームを入れたいので､そのフォームの作成に使う変数を設定
+    # ルーム詳細ページに､ルーム予約フォームを入れたいので､その作成に使うReservationインスタンス(値はまだ空)を生成｡
     @reservation = Reservation.new
   end
 

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  #get 'reservations/create'
-  #get 'reservations/show'
-  #get 'reservations/index'
   #Reservationモデルのルーティン
-  resources :reservations
+  #デフォルトのリソースルーティング + 予約確認ページ実装のため､新たに追加したnewアクション(confirm_newアクション)へのルーティング
+  resources :reservations do
+    post :confirm, action: :confirm_new, on: :new
+    #=>  confirm_new_reservation  POST /reservations/new/confirm(.:format)   => reservations#confirm_new
+  end
 
   # Roomモデルのルーティン
   resources :rooms

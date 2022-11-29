@@ -20,24 +20,35 @@
 
 <p>ーーーーーーーーーーーーーーーーーーーーーーーーーーーー</p>
 <!--ルーム予約フォームを作成-->
-<%= form_with model: @reservation, local: true do |form| %> <!--validatesエラーメッセを表示するための､local: true-->
+<!--validatesエラーメッセを表示するための､local: true-->
+<!--遷移先を予約確認ページ(confirm_new_reservation_path)に変更-->
+<%= form_with model: @reservation, local: true, url: confirm_new_reservation_path do |form| %>
   <div class="new_reservation_form">
     <h2>ルーム予約フォーム</h2>
     <h3><%= "¥ #{@room.price} / 日" %></h3>
 
     <!--予約開始日入力フォームを作成 -->
-    <%= form.label :start_date, "開始日" %>
-    <!--.date_field で｢カレンダー入力フォーム｣というフォーム型を指定-->
-    <%= form.date_field :start_date %>
+    <div>
+      <p><%= form.label :start_date, "開始日" %></p>
+      <!--.date_field で｢カレンダー入力フォーム｣というフォーム型を指定-->
+      <p><%= form.date_field :start_date %></p>
+    </div>
+
 
     <!-- 予約終了日入力フォームを作成-->
-    <%= form.label :end_date, "終了日" %>
-    <%= form.date_field :end_date %>
+    <div>
+      <p><%= form.label :end_date, "終了日" %></p>
+      <p><%= form.date_field :end_date %></p>
+    </div>
+
+
 
     <!-- 予約人数入力フォームを作成-->
-    <%= form.label :number_of_people, "人数" %>
-    <!--.number_field で｢数値入力ボックス｣というフォーム型を指定-->
-    <%= form.number_field :number_of_people %>
+    <div>
+      <p><%= form.label :number_of_people, "人数" %></p>
+      <!--.number_field で｢数値入力ボックス｣というフォーム型を指定-->
+      <p><%= form.number_field :number_of_people %></p>
+    </div>
 
     <!--user_idカラムに値を渡すため､非表示フォームを作成-->
     <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
@@ -48,9 +59,10 @@
     <!--今開いている詳細ページのルームのid値をパラメーターのvalue値として渡す-->
     <%= form.hidden_field :room_id, value: @room.id %>
 
-    <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
-    <!--押下後は､ReservationsControllerのcreateアクションへ飛ぶ-->
-    <%= form.submit "予約する"%>
-
+    <div>
+      <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
+      <!--押下後は､予約確認ページにredirect-->
+      <%= form.submit "確認する"%>
+    </div>
   </div>
 <% end %>
