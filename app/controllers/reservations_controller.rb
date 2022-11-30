@@ -4,8 +4,14 @@ class ReservationsController < ApplicationController
   def confirm_new
     # createアクション時と同一のreservationインスタンスを生成(記述も同一)
     @reservation = Reservation.new(reservation_params)
-    # validateエラーがあった場合 → ルーム詳細ビューファイルへ
-    redirect_to room_path(reservation_params[:room_id]) if @reservation.invalid?
+
+    # このまますすむと､creteアクションでのDB保存時に検証エラーが発生する場合
+    if  @reservation.invalid?
+      # validateエラーメッセージを配列として取得
+      flash[:validate_error_messages] = @reservation.errors.full_messages
+      # ルーム詳細ビューファイルへ
+      redirect_to room_path(reservation_params[:room_id])
+    end
   end
 
   def create
