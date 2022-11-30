@@ -1,3 +1,10 @@
+<!--予約フォームのvalidateエラーメッセージがあれば､表示する-->
+<% if flash[:validate_error_messages].present? %>   <!--この条件をつけないと､メッセージが無い時にエラーが発生する-->
+  <% flash[:validate_error_messages].each do |validate_error_message| %>
+    <li><%= validate_error_message %></li>
+  <% end %>
+<% end %>
+
 <div class="room_show">
   <div class="room_show_img">
     <!--image_tag はrailsで画像を表示するためのimgタグを作成するヘルパーメソッド-->
