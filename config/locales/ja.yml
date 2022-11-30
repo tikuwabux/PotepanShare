@@ -1,0 +1,19 @@
+# config/locales以下のファイルはすべて読み込まれるので､複数のファイルに分割して整理してもOK(モデル別とか)
+# インデントは､tabキー(半角スペース2つ)ではなく､半角スペース1つにすることに注意
+# ハッシュは「キー:(半角スペース1つ)値」の形式で表す｡半角スペースを忘れない
+# 半角スペースでインデントすることで､ハッシュのネスト(ハッシュの中にハッシュを入れること)が可能
+
+ja:
+ activerecord:
+
+  #｢reservation｣というモデルをこのアプリでは｢投稿｣と呼ぶ
+  models:
+   reservation: 投稿
+
+  # reservationモデルの｢start_date｣という属性を､このアプリでは｢開始日｣と呼ぶ
+  # ｢end_date｣･｢number_of_people｣属性らにも同様の指示を行う
+  attributes:
+   reservation:
+    start_date: 開始日
+    end_date: 終了日
+    number_of_people: 人数
