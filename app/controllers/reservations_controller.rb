@@ -26,14 +26,9 @@ class ReservationsController < ApplicationController
       return  # 処理を終了する(@reservation.save前に終了させることで､DBへの保存を防ぐ)
     end
 
-    if @reservation.save
-      flash[:notice] = "#{@reservation.room.name}ルームの予約に成功しました"
-      redirect_to reservation_path(@reservation.id)
-
-    else
-      flash[:notice] = "#{@reservation.room.name}ルームの予約に失敗しました"
-      redirect_to room_path(@reservation.room.id)
-    end
+    @reservation.save
+    flash[:notice] = "#{@reservation.room.name}ルームの予約に成功しました"
+    redirect_to reservation_path(@reservation.id)
   end
 
   def show

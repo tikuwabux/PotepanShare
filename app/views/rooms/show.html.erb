@@ -1,8 +1,10 @@
 <!--予約フォームのvalidateエラーメッセージがあれば､表示する-->
 <% if flash[:validate_error_messages].present? %>   <!--この条件をつけないと､メッセージが無い時にエラーが発生する-->
-  <% flash[:validate_error_messages].each do |validate_error_message| %>
-    <li><%= validate_error_message %></li>
-  <% end %>
+  <ul>
+    <% flash[:validate_error_messages].each do |validate_error_message| %>
+      <li><%= validate_error_message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <div class="room_show">
