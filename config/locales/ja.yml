@@ -17,3 +17,17 @@ ja:
     start_date: 開始日
     end_date: 終了日
     number_of_people: 人数
+
+  #｢room｣というモデルをこのアプリでは｢ルーム｣と呼ぶ
+  models:
+   room: 投稿
+
+  # roomモデルの｢name｣という属性を､このアプリでは｢ルーム名｣と呼ぶ
+  # ｢introduction｣･｢price｣･｢address｣・｢image｣属性らにも同様の指示を行う
+  attributes:
+   room:
+    name: ルーム名
+    introduction: ルーム紹介
+    price: 料金( /日 * 人)
+    address: 住所
+    image: ルーム画像
