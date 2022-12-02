@@ -16,6 +16,9 @@ class RoomsController < ApplicationController
       # room_path(id値) で 登録済みルーム詳細ページ(/rooms/id値)へ
       redirect_to room_path(@room.id)
     else
+      # validateエラーメッセージを配列として取得し､変数flashに格納｡
+      flash[:validate_error_messages] = @room.errors.full_messages
+
       flash[:notice] = "ルームの新規登録に失敗しました"
       # newアクションへ
       render "new"
