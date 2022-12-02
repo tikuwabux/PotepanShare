@@ -7,4 +7,11 @@ class Room < ApplicationRecord
   has_many :reservations
   # Reservationモデルを介したRoomモデル : Reservationモデルを介したUserモデル == 多 : 多
   has_many :users, through: :reservations
+
+  # 以下のvalidationを追加
+  validates :name, presence: true
+  validates :introduction, presence: true, length: { maximum: 100 }
+  validates :price, presence: true
+  validates :address, presence: true
+  validates :image, presence: true
 end
