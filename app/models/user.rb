@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :reservations
   # Reservationモデルを介したUserモデル : Reservationモデルを介したRoomモデル == 多 : 多
   has_many :rooms, through: :reservations
+
+  # gem 'device'に追加したname属性のvalidationを設定
+  validates :name, presence: true
+  
 end
