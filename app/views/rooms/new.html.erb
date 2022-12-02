@@ -1,6 +1,11 @@
-<!--フラッシュメッセージがあれば表示する-->
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
+<!--新規登録フォームのvalidateエラーメッセージがあれば､表示する-->
+<!--app/views/rooms/show.html.erb のときと全く同じ記述-->
+<% if flash[:validate_error_messages].present? %>   <!--この条件をつけないと､メッセージが無い時にエラーが発生する-->
+  <ul>
+    <% flash[:validate_error_messages].each do |validate_error_message| %>
+      <li><%= validate_error_message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <!--form_withヘルパーメソッドで､入力フォームを作成-->
