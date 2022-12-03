@@ -57,8 +57,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # アカウント編集時用のメソッド
   # 許可するための追加のパラメータがある場合は、sanitizer に追加してください
+  # => :name(ユーザー名)を追加した
+  # => :user_image(ユーザー画像)を追加した
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :name]) # :name を追加した
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :name, :user_image])
   end
 
   # サインアップ後に使用する path
