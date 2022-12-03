@@ -11,5 +11,9 @@ class User < ApplicationRecord
 
   # gem 'device'に追加したname属性のvalidationを設定
   validates :name, presence: true
-  
+
+  # このモデルでAcitve Strageを使用する
+  # 1つのuserオブジェクトに1つの画像を紐付けること､その画像をUserモデルからuser_imageと呼ぶことを指定｡
+  # 以降､user_image は､usersテーブルのカラム名のように扱える｡
+  has_one_attached :user_image
 end
