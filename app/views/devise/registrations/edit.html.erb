@@ -1,7 +1,22 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+<!--ユーザー画像があれば表示-->
+<div class="user_image">
+  <!--image_tag はrailsで画像を表示するためのimgタグを作成するヘルパーメソッド-->
+  <!--@user.user_image(ユーザー画像のファイル名) で 登録したユーザー画像表示-->
+  <!--.variant(resize:'200x200(縦✕横サイズ)') で画像サイズを200x200に指定｡variantメソッドは､gem 'mini_magick'のインストールで使用可能になった-->
+  <!-- if @user.image.attached? で､画像が添付されてないときのModule::DelegationError発生を防ぐ-->
+  <%= image_tag @user.user_image.variant(resize:'200x200') if @user.user_image.attached? %>
+</div>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <!--Active Strageの導入により､カラムのように扱えるようになった､user_imageのフォームを作成-->
+  <div class="field">
+    <%= f.label :user_image %><br />
+    <%= f.file_field :user_image %>
+  </div>
 
   <!-- 追加したnameカラムのフォームを作成-->
   <div class="field">
