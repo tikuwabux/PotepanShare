@@ -72,4 +72,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
+
+  # ユーザー編集後のリダイレクト先を指定するメソッド(deviseで実装済みのメソッドだが､自動生成されなかったため自分で作成)
+  def after_update_path_for(resource)
+    # リダイレクト先を「ユーザー編集ページ」に指定
+    # ログイン中のユーザーは常に1人であり､編集するユーザーレコードのid値も固定されているので､パスの引数にid値を渡す必要なし｡
+    edit_user_registration_path()
+  end
 end
