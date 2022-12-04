@@ -9,8 +9,9 @@ class User < ApplicationRecord
   # Reservationモデルを介したUserモデル : Reservationモデルを介したRoomモデル == 多 : 多
   has_many :rooms, through: :reservations
 
-  # gem 'device'に追加したname属性のvalidationを設定
+  # gem 'device'に追加したname属性と､user_introduction属性のvalidationを設定
   validates :name, presence: true
+  validates :user_introduction, presence: true, length: { maximum: 100 }
 
   # このモデルでAcitve Strageを使用する
   # 1つのuserオブジェクトに1つの画像を紐付けること､その画像をUserモデルからuser_imageと呼ぶことを指定｡
