@@ -24,7 +24,8 @@ ja:
     image: ルーム画像
 
    # userモデルの｢name｣という属性を､このアプリでは｢ユーザー名｣と呼ぶ
-   # ｢user_image｣にも同様の指示を行う
+   # ｢user_image｣､｢user_introduction｣にも同様の指示を行う
    user:
     name: ユーザー名
     user_image: ユーザー画像
+    user_introduction: ユーザー紹介

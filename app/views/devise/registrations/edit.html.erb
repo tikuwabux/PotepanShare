@@ -24,6 +24,12 @@
     <%= f.text_field :name %>
   </div>
 
+  <!--追加したuser_introductionカラムのフォームを作成-->
+  <div class="field">
+    <%= f.label :user_introduction %><br />
+    <%= f.text_area :user_introduction %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
