@@ -41,6 +41,23 @@ class RoomsController < ApplicationController
     #rooms = current_user.rooms という関連を使った記述でも可
   end
 
+  def address_search
+    @q = Room.ransack(params[:q])
+    @results = @q.result
+  end
+
+  # def freeword_name_search
+  #   binding.pry
+  #   if params[:q] != nil
+  #     params[:q]['name_cont_any'] = params[:q]['name_cont_any'].split(/[\p{blank}\s]+/)
+  #     @keyword = Room.ransack(params[:q])
+  #     @rooms = @keyword.result
+  #   else
+  #     @keyword = Room.ransack(params[:q])
+  #     @rooms = @keyword.result #検索の結果を受け取る。
+  #   end
+  # end
+
   private
   # params を使用し､ルーム情報登録ページの送信ボタン押下､ルーム情報編集ページの編集ボタン押下によって送られたきたデータを取得｡
   # 尚､require,permitメソッドで､roomオブジェクトのname･introduction・price･address・image･user_id属性以外の取得データを弾く｡(Strong Parameters)

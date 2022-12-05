@@ -1,0 +1,10 @@
+<h1>app/views/rooms/address_search.erb</h1>
+<h2>住所名検索結果: <%= @results.count if @results.present? %>件</h2>
+<% @results.each do |room| %>
+  <ul>
+    <li><%= image_tag room.image.variant(resize:'200x200') if room.image.attached? %></li>
+    <li><%= room.name %></li>
+    <li><%= room.address %></li>
+    <li>¥<%= room.price %></li>
+  </ul>
+<% end %>

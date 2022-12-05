@@ -7,7 +7,15 @@ Rails.application.routes.draw do
   end
 
   # Roomモデルのルーティン
-  resources :rooms
+  # デフォルトのリソースルーティング + ルーム住所検索結果ページ実装のため､新たに追加したaddress_searchアクションへのルーティング
+  resources :rooms do
+    collection do
+      get 'address_search'
+      #=>  address_search_rooms  GET /rooms/address_search(.:format) => rooms#address_search
+      # get 'freeword_name_search'
+      #=> freeword_name_search_rooms    GET /rooms/freeword_name_search(.:format) => rooms#freeword_name_search
+    end
+  end
 
   # Homeモデルのルーティン
   get 'home/index'
