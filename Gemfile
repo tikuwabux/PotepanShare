@@ -74,3 +74,5 @@ gem 'rails-i18n'
 # ImageMagick(画像変換ツール)をrailsで使えるようにするために追加
 gem 'mini_magick'
 
+# 検索機能を導入するために追加
+gem 'ransack'
