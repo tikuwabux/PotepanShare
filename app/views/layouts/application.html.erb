@@ -12,6 +12,26 @@
   <body>
     <header>
       <nav>
+        <%= link_to 'ホーム画面', root_path %>
+
+        <!--room検索フォーム1 (検索条件 == 住所名 && 単数単語)-->
+        <%= search_form_for @search_results, url: address_search_rooms_path do |form| %>
+          <%= form.label :address_cont, '住所名(単数単語)' %>
+          <!--params[:q]                     =   {:address_cont => 'フォームの入力値'} -->
+          <!--paramsハッシュの:qキーのvalue値   =   :address_contキーのvalue値が'フォームの入力値' のハッシュ -->
+          <%= form.search_field :address_cont %>
+          <br>
+          <%= form.submit %>
+        <% end %>
+
+        <!--room検索フォーム2 (検索条件 == ルーム名 && (単数単語 || 複数単語) )-->
+        <%= search_form_for @search_results, url: freeword_name_search_rooms_path do |form| %>
+          <%= form.label :name_cont, 'ルーム名(単数単語 or 複数単語)' %>
+          <%= form.search_field :name_cont %>
+          <br>
+          <%= form.submit %>
+        <% end %>
+
         <!-- user_signed_in? はユーザーがログインしているか調べるdeviceのHelperメソッド-->
         <% if user_signed_in? %>
           <!-- current_user は現在ログインしているUserオブジェクトを返すdeviceのHelperメソッド-->
