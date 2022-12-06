@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   end
 
   # Roomモデルのルーティン
-  # デフォルトのリソースルーティング + ルーム住所検索結果ページ実装のため､新たに追加したaddress_searchアクションへのルーティング
+  # デフォルトのリソースルーティング
+  # + room検索フォーム1 (検索条件 == 住所名 && 単数単語)の検索結果ページ実装のため追加した､address_searchアクションへのルーティン
+  # + room検索フォーム2 (検索条件 == ルーム名 && (単数単語 || 複数単語) )の検索結果ページ実装のため追加した､freeword_name_searchアクションへのルーティン
   resources :rooms do
     collection do
       get 'address_search'
       #=>  address_search_rooms  GET /rooms/address_search(.:format) => rooms#address_search
-      # get 'freeword_name_search'
+      get 'freeword_name_search'
       #=> freeword_name_search_rooms    GET /rooms/freeword_name_search(.:format) => rooms#freeword_name_search
     end
   end
