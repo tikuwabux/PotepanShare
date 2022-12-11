@@ -7,3 +7,37 @@
   <br>
   <%= form.submit %>
 <% end %>
+
+<!--room検索フォーム1 (入力値 = "東京")の非表示フォーム-->
+<%= search_form_for @search, url: address_search_rooms_path do |form| %>
+  <!--:address_contカラムに値を渡すため､非表示フォームを作成-->
+  <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
+
+  <!--:address_cont で params[:q](ハッシュ構造をもつ)のkey名を :address_cont と指定-->
+  <!--value: "東京" で､params[:q]のvalue値を､"東京"と指定(指定がない場合は､デフォルトの"フォームの入力値"となる)-->
+  <!--上2行をまとめると､params[:q] = {:address_cont => "東京"} と設計-->
+  <%= form.hidden_field :address_cont, value: "東京" %>
+  <%= form.submit "[東京]  で検索" %>
+<% end %>
+
+<!--room検索フォーム1 (入力値 = "大阪")の非表示フォーム-->
+<%= search_form_for @search, url: address_search_rooms_path do |form| %>
+  <!--params[:q] = {:address_cont => "大阪"} と設計-->
+  <%= form.hidden_field :address_cont, value: "大阪" %>
+  <%= form.submit "[大阪]  で検索" %>
+<% end %>
+
+
+<!--room検索フォーム1 (入力値 = "京都")の非表示フォーム-->
+<%= search_form_for @search, url: address_search_rooms_path do |form| %>
+  <!--params[:q] = {:address_cont => "京都"} と設計-->
+  <%= form.hidden_field :address_cont, value: "京都" %>
+  <%= form.submit "[京都]  で検索" %>
+<% end %>
+
+<!--room検索フォーム1 (入力値 = "札幌")の非表示フォーム-->
+<%= search_form_for @search, url: address_search_rooms_path do |form| %>
+  <!--params[:q] = {:address_cont => "札幌"} と設計-->
+  <%= form.hidden_field :address_cont, value: "札幌" %>
+  <%= form.submit "[札幌]   で検索" %>
+<% end %>

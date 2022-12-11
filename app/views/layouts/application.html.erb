@@ -14,7 +14,7 @@
       <nav>
         <%= link_to 'ホーム画面', root_path %>
 
-        <!--room検索フォーム1 (検索条件 == 住所名 && 単数単語) (シンプルモード)-->  
+        <!--room検索フォーム1 (検索条件 == 住所名 && 単数単語) (シンプルモード)-->
         <%= search_form_for @search, url: address_search_rooms_path do |form| %>
           <%= form.label :address_cont, '住所名(単数単語)' %>
 
