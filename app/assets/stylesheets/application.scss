@@ -29,9 +29,9 @@ body, div, p, ul, ol, li, dl, dt, dd, table, th, td, img, figure, h1, h2, h3, h4
 }
 /*リセットコード終了*/
 
+// ヘッダー開始
 header {
   background-color: black;
-  position: absolute;
   width: 100%;
   padding: 20px 0;
 
@@ -62,9 +62,23 @@ header {
     }
   }
 }
+// ヘッダー終了
 
-// nav {
-//   display: flex;
-//   justify-content: space-between;
-//   color: white;
-// }
+
+
+
+// フッター開始
+footer {
+  background-color: black;
+  color: white;
+  width: 100%;
+  padding: 30px 0;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+
+  h4 {
+    text-align: center;
+  }
+}
+// フッター終了
