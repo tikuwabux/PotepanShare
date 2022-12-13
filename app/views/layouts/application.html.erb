@@ -23,12 +23,14 @@
             <!--paramsハッシュの:qキーのvalue値   =   :address_contキーのvalue値が'フォームの入力値' のハッシュと設計-->
             <!--placeholder属性を追加し､属性値に"住所名(単数単語)"を指定-->
             <%= form.search_field :address_cont, placeholder: "住所名(単数単語)" %>
+            <br>
             <%= form.submit %>
           <% end %>
 
           <!--room検索フォーム2 (検索条件 == ルーム名 && (単数単語 || 複数単語) ) (アドバンストモード)-->
           <%= search_form_for @search, url: freeword_name_search_rooms_path do |form| %>
             <%= form.search_field :name_cont, placeholder: "ルーム名(複数単語可)" %>
+            <br>
             <%= form.submit %>
           <% end %>
         </div>
@@ -39,7 +41,6 @@
             <!-- current_user は現在ログインしているUserオブジェクトを返すdeviceのHelperメソッド-->
             <!-- ほとんどの ***_path は routes.rbファイル中の devise_for :users に詰め込まれている-->
             <!-- sign_out_path に関しては､devise_scope で設定してる-->
-            Signed in as <strong><%= current_user.email %></strong>
             <%= link_to 'プロフィール変更', edit_user_registration_path %>
             <%= link_to 'サインアウト', sign_out_path %>
             <%= link_to 'ルーム登録', new_room_path %>
@@ -53,6 +54,7 @@
       </div>
     </header>
 
+    <main>
     <p class="notice"><%= notice %></p>
     <%
 =begin
@@ -61,9 +63,8 @@
 <%
 =end
 %>
-
-
-    <%= yield %>
+      <%= yield %>
+    </main>
 
     <footer>
       <h4>@2022/12/13 POTEPAN.Rail_Dril_2</h4>
