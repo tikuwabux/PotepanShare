@@ -21,10 +21,10 @@
 
           <!--ルーム名入力フォームを作成-->
           <tr>
-            <!--保存先のカラムにname､見出しタイトル名に"ルーム名"を指定-->
+          <!--formラベルにname属性名を指定し､name属性名の呼び方を"ルーム名"と指定-->
             <th><%= form.label :name, "ルーム名" %></th>
             <!-- .text_field で､｢一行のテキスト投稿フォーム｣というフォーム型を指定-->
-            <!--入力値をパラメーターのvalue値として渡す-->
+            <!--params[:room] = {:name => "入力値"} と設計 -->
             <td><%= form.text_field :name %></td>
           </tr>
 
@@ -32,6 +32,7 @@
           <tr>
             <th><%= form.label :introduction, "ルーム紹介" %></th>
             <!--.text_area で｢複数行のテキスト投稿フォーム｣というフォーム型を指定 -->
+            <!--params[:room] = {:name => "入力値", :introduction => "入力値"} と設計し直し -->
             <td><%= form.text_area :introduction %></td>
           </tr>
 
@@ -56,16 +57,17 @@
             <td><%= form.file_field :image %></td>
           </tr>
 
-          <!--user_idカラムに値を渡すため､非表示フォームを作成-->
+          <!--user_id値を渡す､非表示フォームを作成-->
           <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
-          <!--current_user(gem'device'を導入したモデル名｡今回はuser) → deviseのヘルパーメソッド｡現在ログインしているユーザーのレコードを取得｡-->
-          <!--現在ログイン中のユーザーのid値をパラメーターのvalue値として渡す-->
+          <!--current_user(gem'device'を導入したモデル名｡今回はuser) は､deviseのヘルパーメソッド｡
+              usersテーブルから､現在ログインしているユーザーのレコードを検索し､同等のデータをもつUserオブジェクトを生成-->
+          <!--params[:room] = {これまでの設計, :user_id => 現在ログイン中のユーザーのid値 } と設計-->
           <%= form.hidden_field :user_id, value: current_user.id %>
-          
+
           <!--入力データ送信ボタンを作成-->
           <tr>
             <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
-            <!--押下後は､RoomsControllerのcreateアクションへ飛ぶ-->
+            <!--押下後は､デフォルトでRoomsControllerのcreateアクションへ飛ぶ-->
             <th><%= form.submit "登録"%></th>
           </tr>
         </table>

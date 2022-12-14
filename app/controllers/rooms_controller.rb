@@ -20,13 +20,13 @@ class RoomsController < ApplicationController
       flash[:validate_error_messages] = @room.errors.full_messages
 
       flash[:notice] = "ルームの新規登録に失敗しました"
-      # newアクションへ
+
       render "new"
     end
   end
 
   def show
-    # Room.find(params[:id]) で､idカラム値がparams[:id]であるroomレコードを取得
+    # 右辺で､roomsテーブルからidカラム値がparams[:id]であるroomレコード検索し､同等のデータをもつRoomオブジェクトを生成
     @room = Room.find(params[:id])
 
     # ルーム詳細ページに､ルーム予約フォームを入れたいので､その作成に使うReservationインスタンス(値はまだ空)を生成｡
@@ -34,11 +34,8 @@ class RoomsController < ApplicationController
   end
 
   def index
-    # Room.where(user_id: current_user.id) で､
-    # user_id値が､現在ログインしているユーザーのid値であるRoomレコードを取得(複数可)
+    # 右辺で､roomsテーブルからuser_id値が､現在ログインしているユーザーのid値であるRoomレコード(複数可)を検索し､同等のデータをもつRoomオブジェクト(複数可)を生成
     @rooms = Room.where(user_id: current_user.id)
-
-    #rooms = current_user.rooms という関連を使った記述でも可
   end
 
   # room検索フォーム1 (検索条件 == 住所名 && 単数単語)(シンプルモード)の検索結果表示ページに対応
