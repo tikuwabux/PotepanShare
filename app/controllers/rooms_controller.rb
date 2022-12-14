@@ -29,7 +29,7 @@ class RoomsController < ApplicationController
     # 右辺で､roomsテーブルからidカラム値がparams[:id]であるroomレコード検索し､同等のデータをもつRoomオブジェクトを生成
     @room = Room.find(params[:id])
 
-    # ルーム詳細ページに､ルーム予約フォームを入れたいので､その作成に使うReservationインスタンス(値はまだ空)を生成｡
+    # ルーム詳細ページに､ルーム予約フォームを入れたいので､その作成に使うReservationインスタンス(値はまだ空)を右辺で生成｡
     @reservation = Reservation.new
   end
 
