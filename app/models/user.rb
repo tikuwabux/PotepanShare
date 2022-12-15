@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   # gem 'device'に追加したname属性と､user_introduction属性のvalidationを設定
   validates :name, presence: true
-  validates :user_introduction, presence: true, length: { maximum: 100 }
+  validates :user_introduction, length: { maximum: 100 }
 
   # このモデルでAcitve Strageを使用する
   # 1つのuserオブジェクトに1つの画像を紐付けること､その画像をUserモデルからuser_imageと呼ぶことを指定｡
