@@ -21,3 +21,12 @@
     }
   }
 }
+
+// devise_registrations_edit(ユーザー編集画面)
+.user_edit_form {
+  padding-top: 50px;
+
+  .user_image {
+    border-radius: 50%;
+  }
+}
