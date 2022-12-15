@@ -1,10 +1,13 @@
-<h1>app/views/rooms/address_search.erb</h1>
-<h2>住所名検索結果: <%= @search_rooms.count if @search_rooms.present? %>件</h2>
-<% @search_rooms.each do |room| %>
-  <ul>
-    <li><%= image_tag room.image.variant(resize:'200x200') if room.image.attached? %></li>
-    <li><%= room.name %></li>
-    <li><%= room.address %></li>
-    <li>¥<%= room.price %></li>
-  </ul>
-<% end %>
+<div class="container">
+  <h2>住所名検索結果: <%= @search_rooms.count if @search_rooms.present? %>件</h2>
+  <div class="search_rooms">
+    <% @search_rooms.each do |room| %>
+      <ul class="search_room">
+        <li><%= image_tag room.image.variant(resize:'200x200') if room.image.attached? %></li>
+        <li><%= room.name %></li>
+        <li><%= room.address %></li>
+        <li>¥<%= room.price %> (円 / 日 * 人)</li>
+      </ul>
+    <% end %>
+  </div>
+</div>

@@ -11,10 +11,8 @@
 .room_show_and_reservation_form {
   display: flex;
   gap: 30px;
-  // background-color:  aqua;
 
   .room_show {
-    // background-color: aquamarine;
     padding: 20px;
   }
   .new_reservation_form {
@@ -43,5 +41,18 @@
       flex-direction: column;
       justify-content: center;
     }
+  }
+}
+
+//rooms_address_search と rooms_freeword_name_search
+.search_rooms {
+  display: flex;
+  flex-wrap: wrap;
+
+  .search_room {
+    border: 1px solid black;
+    width: 25%;
+    box-sizing: border-box;
+    padding: 20px;
   }
 }
