@@ -1,0 +1,103 @@
+<div class="rooms_show">
+  <div class="container">
+    <!--予約フォームのvalidateエラーメッセージがあれば､表示する-->
+    <% if flash[:validate_error_messages].present? %>   <!--この条件をつけないと､メッセージが無い時にエラーが発生する-->
+      <ul>
+        <% flash[:validate_error_messages].each do |validate_error_message| %>
+          <li><%= validate_error_message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <div class="room_show_and_reservation_form">
+      <!--ルーム詳細欄-->
+      <div class="room_show">
+        <div class="room_show_img">
+          <!--image_tag はrailsで画像を表示するためのimgタグを作成するヘルパーメソッド-->
+          <!--@room.image(ファイル名) で 登録したルーム画像表示-->
+          <!--.variant(resize:'200x200(縦✕横サイズ)') で画像サイズを200x200に指定｡variantメソッドは､gem 'mini_magick'のインストールで使用可能になった-->
+          <!-- if @room(Roomオブジェクト).image.attached? で､画像が添付されてないときのModule::DelegationError発生を防ぐ-->
+          <%= image_tag @room.image.variant(resize:'200x200') if @room.image.attached?%>
+        </div>
+
+        <div class="room_show_details">
+          <div class="room_show_detail_1">
+            <div class="registered_user_icon">
+              <!--サインインの有無で条件分岐(非サインイン時にcurrent_user => nil となりエラーが発生するため)-->
+              <% if current_user %>
+                <%= image_tag current_user.user_image.variant(resize:'50x50'), class: "user_image" if current_user.user_image.attached? %>
+              <% else %>
+                <%= image_tag "default_user_img.jpeg", class: "user_image", width: "50px" %>
+              <% end %>
+            </div>
+
+            <div class="room_show_detail_1_profile">
+              <p class="room_show_detail_1_profile_name"><strong><%= @room.name %></strong></p>
+              <p class="room_show_detail_1_profile_address"><strong><%= @room.address %></strong></p>
+            </div>
+          </div>
+
+          <div class="room_show_detail_2"><br>
+              <strong><%= @room.introduction %></strong>
+          </div>
+        </div>
+      </div>
+
+      <!--ルーム予約フォーム-->
+      <div class="new_reservation_form">
+        <!--ルーム予約フォームを作成-->
+        <!--validatesエラーメッセを表示するための､local: true-->
+        <!--遷移先を予約確認ページ(confirm_new_reservation_path)に変更-->
+        <%= form_with model: @reservation, local: true, url: confirm_new_reservation_path do |form| %>
+          <h2>ルーム予約フォーム</h2>
+          <h3><%= "¥#{@room.price}( 円 / 日 * 人)" %></h3>
+
+          <!--予約開始日入力フォームを作成 -->
+          <div>
+            <p><%= form.label :start_date, "開始日" %></p>
+            <!--.date_field で｢カレンダー入力フォーム｣というフォーム型を指定-->
+            <!--params[:reservation] = {:start_date => "入力値"} と設計-->
+            <p><%= form.date_field :start_date %></p>
+          </div>
+
+          <!-- 予約終了日入力フォームを作成-->
+          <div>
+            <p><%= form.label :end_date, "終了日" %></p>
+            <!--params[:reservation] = {:start_date => 入力値, :end_date => 入力値} と設計を追加-->
+            <p><%= form.date_field :end_date %></p>
+          </div>
+
+          <!-- 予約人数入力フォームを作成-->
+          <div>
+            <p><%= form.label :number_of_people, "人数" %></p>
+            <!--.number_field で｢数値入力ボックス｣というフォーム型を指定-->
+            <p><%= form.number_field :number_of_people %></p>
+          </div>
+
+          <!--サインインの有無で条件分岐(非サインイン時にcurrent_user => nil となりエラーが発生するため)-->
+          <% if current_user %>
+            <!--user_id値を渡すため､非表示フォームを作成-->
+            <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
+            <!--params[:reservation] = {今までの設計, :user_id => 現在サインインしているユーザーのid値 }と設計を追加-->
+            <%= form.hidden_field :user_id, value: current_user.id %>
+          <% end %>
+
+          <!--room_id値を渡すため､非表示フォームを作成-->
+          <%= form.hidden_field :room_id, value: @room.id %>
+
+          <!--サインインの有無で条件分岐(サインイン前なら､まずサインインしてほしいため)-->
+          <% if current_user %>
+            <div>
+              <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
+              <!--押下後は､urlを指定した予約確認ページにredirect-->
+              <%= form.submit "確認する"%>
+            </div>
+          <% else %>
+            <%= link_to 'サインイン', new_user_session_path %>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

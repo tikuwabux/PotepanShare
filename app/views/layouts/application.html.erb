@@ -10,6 +10,58 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="header_container">
+        <div class="header_left">
+          <%= link_to root_path do %>
+            <%= image_tag "logo.png" %>
+          <% end %>
+
+          <!--room検索フォーム1 (検索条件 == 住所名 && 単数単語) (シンプルモード)-->
+          <%= search_form_for @search, url: address_search_rooms_path do |form| %>
+            <!--params[:q]                     =   {:address_cont => 'フォームの入力値'}  と設計-->
+            <!--paramsハッシュの:qキーのvalue値   =   :address_contキーのvalue値が'フォームの入力値' のハッシュと設計-->
+            <!--placeholder属性を追加し､属性値に"住所名(単数単語)"を指定-->
+            <%= form.search_field :address_cont, placeholder: "住所名(単数単語)" %>
+            <br>
+            <%= form.submit %>
+          <% end %>
+
+          <!--room検索フォーム2 (検索条件 == ルーム名 && (単数単語 || 複数単語) ) (アドバンストモード)-->
+          <%= search_form_for @search, url: freeword_name_search_rooms_path do |form| %>
+            <%= form.search_field :name_cont, placeholder: "ルーム名(複数単語可)" %>
+            <br>
+            <%= form.submit %>
+          <% end %>
+        </div>
+
+        <nav>
+          <!-- user_signed_in? はユーザーがログインしているか調べるdeviceのHelperメソッド-->
+          <% if user_signed_in? %>
+            <!-- current_user は現在ログインしているUserオブジェクトを返すdeviceのHelperメソッド-->
+            <!-- ほとんどの ***_path は routes.rbファイル中の devise_for :users に詰め込まれている-->
+            <!-- sign_out_path に関しては､devise_scope で設定してる-->
+            <%= link_to 'プロフィール変更', edit_user_registration_path %>
+            <%= link_to 'サインアウト', sign_out_path %>
+            <%= link_to 'ルーム登録', new_room_path %>
+            <%= link_to "#{current_user.name}の登録済みルーム一覧", rooms_path %>
+            <%= link_to "#{current_user.name}の予約済みルーム一覧", reservations_path %>
+          <% else %>
+            <%= link_to 'サインアップ', new_user_registration_path, class: "sign_up" %>
+            <%= link_to 'サインイン', new_user_session_path %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <h4>@2022/12/13 POTEPAN.Rail_Dril_2</h4>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,32 @@
+// devise_sessions_new(サインイン画面)
+.sign_in_page {
+
+  .container {
+    text-align: center;
+
+    .sign_in_form {
+      padding-top: 50px;
+    }
+  }
+}
+
+// devise_registrations_new(サインアップ画面)
+.sign_up_page {
+
+  .container {
+    text-align: center;
+
+    .sign_up_form {
+      padding-top: 50px;
+    }
+  }
+}
+
+// devise_registrations_edit(ユーザー編集画面)
+.user_edit_form {
+  padding-top: 50px;
+
+  .user_image {
+    border-radius: 50%;
+  }
+}

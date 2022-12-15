@@ -1,0 +1,31 @@
+
+<h3><%= current_user.name %>の予約済みルーム一覧</h3>
+<table>
+  <thead>
+    <tr>
+      <th>ルーム画像</th>
+      <th>ルーム名</th>
+      <th>ルーム紹介</th>
+      <th>合計料金</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>予定確定日時</th>
+    </tr>
+  </thead>
+  <tbody>
+  <!--以下は､app/views/rooms/index.html.erb と類似-->
+    <% @rooms.each do |room| %>
+      <!--roomから取得したreservationレコードを頻繁に使うので変数化-->
+      <% reservation = room.reservations.find_by(user_id: current_user.id) %>
+      <tr>
+        <td><%= image_tag room.image.variant(resize:'200x200') if room.image.attached? %></td>
+        <td><%= link_to room.name, room_path(room.id) %></td>
+        <td><%= room.introduction %></td>
+        <td><%= room.price * (reservation.end_date - reservation.start_date).to_i * reservation.number_of_people %>円</td>
+        <td><%= reservation.start_date %></td>
+        <td><%= reservation.end_date %></td>
+        <td><%= reservation.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

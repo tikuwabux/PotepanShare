@@ -12,7 +12,10 @@ gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
+
+#gem 'webpacker', '~> 4.0' Webpacker::Manifest::MissingEntryErrorを解消するため､下に変更
+gem 'webpacker', '~> 5.0'
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -52,3 +55,24 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#ログイン機能実装のため追加
+gem 'devise'
+
+#deviseのメッセージを日本語化するために､以下の2つ追加｡
+#deviseメッセージの日本語翻訳ファイルが詰まっている
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
+# デバッグを実行するため追加
+gem 'pry-rails'
+
+#rails_validation_errorを含めた､様々なrails系メッセージを日本語化するために追加
+#様々なrails系メッセージの日本語翻訳ファイルが詰まっている
+gem 'rails-i18n'
+
+# ImageMagick(画像変換ツール)をrailsで使えるようにするために追加
+gem 'mini_magick'
+
+# 検索機能を導入するために追加
+gem 'ransack'

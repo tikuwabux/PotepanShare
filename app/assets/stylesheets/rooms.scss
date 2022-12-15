@@ -1,0 +1,58 @@
+// Place all the styles related to the rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+//rooms_new
+.new_room_registration_form {
+      padding-top: 50px;
+}
+
+// rooms_show
+.room_show_and_reservation_form {
+  display: flex;
+  gap: 30px;
+
+  .room_show {
+    padding: 20px;
+  }
+  .new_reservation_form {
+    border: 2px solid black;
+    padding: 20px;
+    background-color: azure;
+  }
+}
+
+.user_image {
+  border-radius: 50%;
+}
+
+.room_show_details {
+  border: 2px solid black;
+  width: fit-content;
+
+  .room_show_detail_1 {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    border-bottom: 1px solid black;
+
+    .room_show_detail_1_profile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
+
+//rooms_address_search と rooms_freeword_name_search
+.search_rooms {
+  display: flex;
+  flex-wrap: wrap;
+
+  .search_room {
+    border: 1px solid black;
+    width: 25%;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+}

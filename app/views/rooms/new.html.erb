@@ -1,0 +1,77 @@
+<div class="rooms_new">
+  <div class="container">
+    <!--新規登録フォームのvalidateエラーメッセージがあれば､表示する-->
+    <!--app/views/rooms/show.html.erb のときと全く同じ記述-->
+    <% if flash[:validate_error_messages].present? %>   <!--この条件をつけないと､メッセージが無い時にエラーが発生する-->
+      <ul>
+        <% flash[:validate_error_messages].each do |validate_error_message| %>
+          <li><%= validate_error_message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <div class="new_room_registration_form">
+      <!--form_withヘルパーメソッドで､入力フォームを作成-->
+      <!--local: true でajax処理を無効にし､validatesエラーメッセを表示-->
+      <%= form_with model: @room, local: true do |form| %>
+        <table>
+          <tr>
+            <th>ルーム情報登録</th>
+          </tr>
+
+          <!--ルーム名入力フォームを作成-->
+          <tr>
+          <!--formラベルにname属性名を指定し､name属性名の呼び方を"ルーム名"と指定-->
+            <th><%= form.label :name, "ルーム名" %></th>
+            <!-- .text_field で､｢一行のテキスト投稿フォーム｣というフォーム型を指定-->
+            <!--params[:room] = {:name => "入力値"} と設計 -->
+            <td><%= form.text_field :name %></td>
+          </tr>
+
+          <!--ルーム紹介入力フォームを作成-->
+          <tr>
+            <th><%= form.label :introduction, "ルーム紹介" %></th>
+            <!--.text_area で｢複数行のテキスト投稿フォーム｣というフォーム型を指定 -->
+            <!--params[:room] = {:name => "入力値", :introduction => "入力値"} と設計し直し -->
+            <td><%= form.text_area :introduction %></td>
+          </tr>
+
+          <!--料金入力フォームを作成-->
+          <tr>
+            <th><%= form.label :price, "料金( /日 * 人)" %></th>
+            <!--.number_field で｢数値入力ボックス｣というフォーム型を指定-->
+            <td><%= form.number_field :price %></td>
+          </tr>
+
+          <!--住所入力フォームを作成-->
+          <tr>
+            <th><%= form.label :address, "住所" %></th>
+            <td><%= form.text_field :address %></td>
+          </tr>
+
+          <!--ルーム画像登録フォームを作成-->
+          <tr>
+            <!-- image は has_one_attached :image(/models/room.rb に記述)によって､カラム名のように扱える -->
+            <th><%= form.label :image, "ルーム画像" %></th>
+            <!--.file_field で｢ファイル選択ボックス｣というフォーム型を指定 -->
+            <td><%= form.file_field :image %></td>
+          </tr>
+
+          <!--user_id値を渡す､非表示フォームを作成-->
+          <!--.hidden_fieldで ｢非表示フォーム｣というフォーム型を指定-->
+          <!--current_user(gem'device'を導入したモデル名｡今回はuser) は､deviseのヘルパーメソッド｡
+              usersテーブルから､現在ログインしているユーザーのレコードを検索し､同等のデータをもつUserオブジェクトを生成-->
+          <!--params[:room] = {これまでの設計, :user_id => 現在ログイン中のユーザーのid値 } と設計-->
+          <%= form.hidden_field :user_id, value: current_user.id %>
+
+          <!--入力データ送信ボタンを作成-->
+          <tr>
+            <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
+            <!--押下後は､デフォルトでRoomsControllerのcreateアクションへ飛ぶ-->
+            <th><%= form.submit "登録"%></th>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

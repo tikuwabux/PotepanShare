@@ -1,0 +1,29 @@
+// Place all the styles related to the reservations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+//reservations_confirm_new
+.confirm_new_reservation_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid black;
+  padding: 20px;
+  width: fit-content;
+  background-color: azure;
+  position: relative;
+  top: 20px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+  }
+}
+
+//reservations_show
+.reservations_show {
+  position: relative;
+  top: 20px;
+}

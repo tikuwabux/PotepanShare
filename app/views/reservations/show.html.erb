@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="reservations_show">
+    <table>
+      <tr>
+        <th>予約したルーム名</th>
+        <td><%= @reservation.room.name %></td>
+      </tr>
+
+      <tr>
+        <th>開始日</th>
+        <td><%= @reservation.start_date %></td>
+      </tr>
+
+      <tr>
+        <th>終了日</th>
+        <td><%= @reservation.end_date %></td>
+      </tr>
+
+      <tr>
+        <th>
+          合計料金<br>
+          価格(円/日*人) ✕ 宿泊数(日) ✕ 人数(人)
+        </th>
+        <!--to_i でDateオブジェクトの差分の分母につく1を削除-->
+        <td><%= @reservation.room.price * (@reservation.end_date - @reservation.start_date).to_i * @reservation.number_of_people %>円</td>
+      </tr>
+    </table>
+  </div>
+</div>

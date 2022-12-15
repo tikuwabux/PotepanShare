@@ -1,0 +1,30 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+//home_index
+.inputted_address_search {
+  background-image: url(img_cover_inputed_address_search.jpeg);
+  background-size: cover;
+  height: 500px;
+  position: relative; //この要素をposition: absolute;使用時の基準に設定
+
+  .inputted_address_search_form {
+    background-color: white;
+    width: fit-content;
+    padding: 20px;
+    //基準とした要素の上端から200px分､下に配置
+    position: absolute;
+    top: 200px;
+  }
+}
+
+.fixed_address_search_forms {
+  display: flex;
+  justify-content: space-between;
+
+  .search_icon {
+    width: 200px;
+    height: 200px;
+  }
+}
