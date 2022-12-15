@@ -1,14 +1,14 @@
 <div class="rooms_show">
-  <!--予約フォームのvalidateエラーメッセージがあれば､表示する-->
-  <% if flash[:validate_error_messages].present? %>   <!--この条件をつけないと､メッセージが無い時にエラーが発生する-->
-    <ul>
-      <% flash[:validate_error_messages].each do |validate_error_message| %>
-        <li><%= validate_error_message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
   <div class="container">
+    <!--予約フォームのvalidateエラーメッセージがあれば､表示する-->
+    <% if flash[:validate_error_messages].present? %>   <!--この条件をつけないと､メッセージが無い時にエラーが発生する-->
+      <ul>
+        <% flash[:validate_error_messages].each do |validate_error_message| %>
+          <li><%= validate_error_message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <div class="room_show_and_reservation_form">
       <!--ルーム詳細欄-->
       <div class="room_show">

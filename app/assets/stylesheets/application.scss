@@ -73,6 +73,12 @@ main {
   }
 }
 
+.notice, .alert {
+  width: 80%;
+  margin: 0 auto;
+  background-color: deeppink;
+}
+
 //全体共通のtableデザイン
 table {
   border: 2px solid black;
