@@ -73,6 +73,27 @@ main {
   }
 }
 
+//全体共通のtableデザイン
+table {
+  border: 2px solid black;
+  background-color: aliceblue;
+  text-align: center;
+  padding-bottom: 50px;
+
+  th {
+    padding: 10px 20px;
+  }
+
+  td {
+    padding: 10px 20px;
+
+    input, textarea {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
 //メイン終了
 
 
