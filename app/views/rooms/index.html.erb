@@ -15,7 +15,7 @@
     <% @rooms.each do |room| %>
     <!--以下､Roomオブジェクトが @room ではなく､ room であることに注意-->
     <tr>
-      <!-- if room(Roomオブジェクト).image.attached? で､画像が添付されてないときのModule::DelegationError発生を-->
+      <!-- if room(Roomオブジェクト).image.attached? で､画像が添付されてないときのModule::DelegationError発生を防ぐ-->
       <td><%= image_tag room.image.variant(resize:'200x200') if room.image.attached? %></td>
       <td><%= link_to room.name, room_path(room.id) %></td>
       <td><%= room.introduction %></td>
