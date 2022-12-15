@@ -2,11 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-//rooms_new
-.new_room_registration_form {
-      padding-top: 50px;
-}
-
+//rooms全体共通
 table {
   border: 2px solid black;
   background-color: aliceblue;
@@ -24,6 +20,11 @@ table {
       height: 100%;
     }
   }
+}
+
+//rooms_new
+.new_room_registration_form {
+      padding-top: 50px;
 }
 
 // rooms_show
