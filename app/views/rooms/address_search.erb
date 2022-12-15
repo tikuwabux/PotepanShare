@@ -4,7 +4,7 @@
     <% @search_rooms.each do |room| %>
       <ul class="search_room">
         <li><%= image_tag room.image.variant(resize:'200x200') if room.image.attached? %></li>
-        <li><%= room.name %></li>
+        <li><%= link_to "#{room.name}", room_path(room.id) %></li>
         <li><%= room.address %></li>
         <li>¥<%= room.price %> (円 / 日 * 人)</li>
       </ul>
