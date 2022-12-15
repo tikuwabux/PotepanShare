@@ -1,50 +1,54 @@
 <!--予約確認ページを作成-->
-<%= form_with model: @reservation, local: true do |form| %> <!--validatesエラーメッセを表示するための､local: true-->
-  <div class="confirm_new_reservation">
-    <h2></h2>
-    <h3><%= "¥ #{@reservation.room.price} / 日" %></h3>
+<div class="container">
+  <%= form_with model: @reservation, local: true do |form| %> <!--validatesエラーメッセを表示するための､local: true-->
+    <div class="confirm_new_reservation_form">
+      <h2>予約内容確認</h2>
+      <h3><%= "¥ #{@reservation.room.price} (円 / 日 * 人)" %></h3>
 
-    <div>
-      <p>開始日</p>
-      <p><%= @reservation.start_date %></p>
+      <div>
+        <p>開始日</p>
+        <p><strong><%= @reservation.start_date %></p></strong>
+      </div>
+
+      <div>
+        <p>終了日</p>
+        <p><strong><%= @reservation.end_date %></p></strong>
+      </div>
+
+      <div>
+        <p>使用日数</p>
+        <p><strong><%= (@reservation.end_date - @reservation.start_date).to_i %>日</strong></p>
+      </div>
+
+      <div>
+        <p>人数</p>
+        <p><strong><%= @reservation.number_of_people %>人</p></strong></p>
+      </div>
+
+      <div>
+        <p>合計金額</p>
+        <p><strong><%= @reservation.room.price * (@reservation.end_date - @reservation.start_date).to_i * @reservation.number_of_people %>円</strong></p>
+      </div>
+
+      <!--予約フォームから送られてきたすべての属性値を､遷移先に引き継ぐ-->
+      <%= form.hidden_field :start_date, value: @reservation.start_date %>
+      <%= form.hidden_field :end_date, value: @reservation.end_date %>
+      <%= form.hidden_field :number_of_people, value: @reservation.number_of_people %>
+      <%= form.hidden_field :user_id, value: @reservation.user_id %>
+      <%= form.hidden_field :room_id, value: @reservation.room_id %>
+
+      <div>
+        <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
+        <!--押下後は､ReservationsController
+        (このform_withメソッドで､ 指定したmodelのコントローラー)
+        のcreateアクションへ飛ぶ-->
+        <%= form.submit "予約を確定する"%>
+
+        <!-- こっちのホームの行き先も､creteアクションだけど､createアクションで､
+        params[:back].present? がtrueの時､ルーム詳細ページに飛ばされるので､
+        最終的に､ルーム詳細ページに戻る-->
+        <%= form.submit "ルーム詳細に戻る", name: 'back' %>
+      </div>
     </div>
-
-    <div>
-      <p>終了日</p>
-      <p><%= @reservation.end_date %></p>
-    </div>
-
-    <div>
-      使用日数 : <%= (@reservation.end_date - @reservation.start_date).to_i %>
-    </div>
-
-    <div>
-      人数 : <%= @reservation.number_of_people %></p>
-    </div>
-
-    <div>
-      <p>合計金額</p>
-      <p><%= @reservation.room.price * (@reservation.end_date - @reservation.start_date).to_i * @reservation.number_of_people %></p>
-    </div>
-
-    <!--予約フォームから送られてきたすべての属性値を､遷移先に引き継ぐ-->
-    <%= form.hidden_field :start_date, value: @reservation.start_date %>
-    <%= form.hidden_field :end_date, value: @reservation.end_date %>
-    <%= form.hidden_field :number_of_people, value: @reservation.number_of_people %>
-    <%= form.hidden_field :user_id, value: @reservation.user_id %>
-    <%= form.hidden_field :room_id, value: @reservation.room_id %>
-
-    <div>
-      <!-- .submitで｢送信ボタン｣というフォーム型を指定-->
-      <!--押下後は､ReservationsController
-      (このform_withメソッドで､ 指定したmodelのコントローラー)
-      のcreateアクションへ飛ぶ-->
-      <%= form.submit "予約を確定する"%>
-
-      <!-- こっちのホームの行き先も､creteアクションだけど､createアクションで､
-      params[:back].present? がtrueの時､ルーム詳細ページに飛ばされるので､
-      最終的に､ルーム詳細ページに戻る-->
-      <%= form.submit "ルーム詳細に戻る", name: 'back' %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
